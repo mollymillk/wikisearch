@@ -1,0 +1,14 @@
+
+
+.pageNumbers {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 500px;
+    margin: auto;
+}
+
+.pageNumber {
+    display: flex;
+}
