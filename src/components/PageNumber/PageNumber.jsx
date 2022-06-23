@@ -14,8 +14,7 @@ export const PageNumber = (props) => {
         setPageNumber(event.target.value);
     } 
 
-    if (props.allItems !== null) {
-        console.log(props.allItems);
+    if (props.allItems !== null && props.value !== null && props.value !== '') {
 
         let pages = [];
         const numberOfPages = props.allItems.length / 5;

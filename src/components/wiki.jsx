@@ -17,11 +17,16 @@ export default function WikiApi() {
         setIsChanged(true);
     }
 
+    const handleKeyPress = (event) => {
+        if(event.key === 'Enter') {
+            event.preventDefault();
+        }
+    }
+
     useEffect(() => {
         const getApi = async () => {
             try {
                 let response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=40&srsearch=${value}`);
-                console.log(value);
                 if (!response.ok ) {
                     throw new Error (`This is an HTTP error: The status is ${response.status}`);
                     
@@ -35,7 +40,6 @@ export default function WikiApi() {
                 } finally {
                     setLoading(false);
                     setIsChanged(false);
-                    console.log(isChanged);
                 }
             }
         getApi();
@@ -52,12 +56,12 @@ export default function WikiApi() {
                     variant="standard" 
                     type="text"
                     onChange={event => { toChange(event) }}
-                    onSubmit={event => { toChange(event) }}
+                    onKeyPress={event => { handleKeyPress(event)}}
                     sx={{ m: 1, width: '700px' }}
                     />
             </form>
             <div>
-                {loading && (console.log(`is ${loading}`))}
+                {loading && (console.log(`is loading`))}
                 {error && (
                     console.log(`There is a problem fetching the post data - ${error}`)
                 
