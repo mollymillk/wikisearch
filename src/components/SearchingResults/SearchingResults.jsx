@@ -1,10 +1,14 @@
+import React from "react";
 import { Link } from "@mui/material";
+import { getCurrentPage } from "./getCurrentPage";
+import './SearchingResults.css'
 
-export const ShowResults = (props) => {
+const SearchingResults = (props) => {
+        const currentPageResults = getCurrentPage(props.pageNumber, props.items) 
     return (
         <div className="all_results">
-            {props.defaultItems &&
-                props.defaultItems.map(item => {
+            {currentPageResults &&
+                currentPageResults.map(item => {
                     const url = `https://en.wikipedia.org/?curid=${item.pageid}`
                     return (
                         <div className="result_container">
@@ -31,3 +35,5 @@ export const ShowResults = (props) => {
         </div>
     )
 }
+
+export default SearchingResults;

@@ -1,15 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { TextField } from "@mui/material";
-import { Header } from "./header/header";
-import '../style/wiki.css'
-import { PageNumber } from "./PageNumber/PageNumber";
+import { Header } from '../Header/Header'
+import './MainPage.css'
+import { PageNavigation } from "../PageNavigation/PageNavigation";
 
-export default function WikiApi() {
+const MainPage = () => {
     const [items, setItems] = useState([]);
     const [value, setValue] = useState('');
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     let [isChanged, setIsChanged] = useState(null);
 
     const toChange = event => {
@@ -33,12 +31,9 @@ export default function WikiApi() {
                 } 
                 response = await response.json();
                 setItems(response.query.search);
-                setError(null);
                 } catch(err) {
-                    setError(err.message);
                     setItems(null);
                 } finally {
-                    setLoading(false);
                     setIsChanged(false);
                 }
             }
@@ -61,12 +56,7 @@ export default function WikiApi() {
                     />
             </form>
             <div>
-                {loading && (console.log(`is loading`))}
-                {error && (
-                    console.log(`There is a problem fetching the post data - ${error}`)
-                
-                )}
-                <PageNumber 
+                <PageNavigation 
                 allItems={items} 
                 value={value}
                 isChanged={isChanged}
@@ -75,3 +65,5 @@ export default function WikiApi() {
         </div>
         )
    }
+
+export default MainPage;

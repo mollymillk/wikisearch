@@ -1,9 +1,10 @@
+import React from "react";
 import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
-import Results from "../results/results";
-import '../PageNumber/PageNumber.css'
+import SearchingResults from "../SearchingResults/SearchingResults";
+import './PageNavigation.css'
 
-export const PageNumber = (props) => {
+export const PageNavigation = (props) => {
     const [pageNumber, setPageNumber] = useState(1);
     
     useEffect(() => {
@@ -25,7 +26,7 @@ export const PageNumber = (props) => {
         
         return (   
             <div className="resultPage">   
-                <Results 
+                <SearchingResults 
                 value={props.value} 
                 items={props.allItems}
                 pageNumber={pageNumber}/>
