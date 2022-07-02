@@ -8,6 +8,7 @@ import { PageNavigation } from "../PageNavigation/PageNavigation";
 const MainPage = () => {
     const [searchingResults, setSearchingResults] = useState([]);
     const [searchRequest, setSearchRequest] = useState('');
+    const [searchRequestLanguage, setSearchRequestLanguage] = useState('en')
 
     const handleChange = event => {
         setSearchRequest(event.target.value);
@@ -21,7 +22,7 @@ const MainPage = () => {
 
     const getSearchingResults = async () => {
         try {
-            let response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=40&srsearch=${searchRequest}`);
+            let response = await fetch(`https://${searchRequestLanguage}.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=40&srsearch=${searchRequest}`);
             if (!response.ok ) {
                 throw new Error (`This is an HTTP error: The status is ${response.status}`);
                 
@@ -34,6 +35,10 @@ const MainPage = () => {
     }
 
     useEffect(() => {
+        if (/[а-я]/i.test(searchRequest)) {
+            setSearchRequestLanguage('ru')
+        } else setSearchRequestLanguage('en')
+        console.log(searchRequestLanguage);
         getSearchingResults();
     }, [searchRequest]);
 
