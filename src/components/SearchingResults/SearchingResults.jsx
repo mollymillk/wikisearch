@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "@mui/material";
 import { getCurrentPage } from "./getCurrentPage";
-import './SearchingResults.css'
+import styles from'./SearchingResults.module.css'
 
 const SearchingResults = (props) => {
         const currentPageResults = getCurrentPage(props.pageNumber, props.items) 
     return (
-        <div className="all_results">
+        <div className={styles.allResults}>
             {currentPageResults &&
                 currentPageResults.map(item => {
                     const url = `https://en.wikipedia.org/?curid=${item.pageid}`
                     return (
-                        <div className="result_container">
+                        <div className={styles.resultContainer}>
                             <h3>
                                 {item.title + ''}
                             </h3>
@@ -21,7 +21,7 @@ const SearchingResults = (props) => {
                             >
                             Read more
                             </Link>
-                            <p dangerouslySetInnerHTML={{__html:
+                            <p className={styles.resultSnippet} dangerouslySetInnerHTML={{__html:
                             item.snippet}}></p>
                             <hr 
                             align="center" 

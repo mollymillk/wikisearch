@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import SearchingResults from "../SearchingResults/SearchingResults";
-import './PageNavigation.css'
+import styles from './PageNavigation.module.css'
 
 export const PageNavigation = (props) => {
     const [pageNumber, setPageNumber] = useState(1);
@@ -25,16 +25,16 @@ export const PageNavigation = (props) => {
         }
         
         return (   
-            <div className="resultPage">   
+            <div className={styles.resultPage}>   
                 <SearchingResults 
                 value={props.value} 
                 items={props.allItems}
                 pageNumber={pageNumber}/>
-                <div className="pageNumbers">
+                <div className={styles.pageNumbers}>
                 {pages && 
                     pages.map((number) => {
                     return (
-                    <div className="pageNumber">
+                    <div className={styles.pageNumber}>
                         <Button
                         onClick={event => {toChangeItems(event)}}
                         value={number}

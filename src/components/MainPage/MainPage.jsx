@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { TextField } from "@mui/material";
 import { Header } from '../Header/Header'
-import './MainPage.css'
+import styles from './MainPage.module.css'
 import { PageNavigation } from "../PageNavigation/PageNavigation";
 
 const MainPage = () => {
@@ -10,7 +10,7 @@ const MainPage = () => {
     const [value, setValue] = useState('');
     let [isChanged, setIsChanged] = useState(null);
 
-    const toChange = event => {
+    const handleChange = event => {
         setValue(event.target.value);
         setIsChanged(true);
     }
@@ -45,14 +45,13 @@ const MainPage = () => {
             <Header/>
             <form>
                     <TextField 
-                    className="searchingInput"
+                    className={styles.searchingInput}
                     id="standard-basic" 
                     label="Searching for..." 
                     variant="standard" 
                     type="text"
-                    onChange={event => { toChange(event) }}
+                    onChange={event => { handleChange(event) }}
                     onKeyPress={event => { handleKeyPress(event)}}
-                    sx={{ m: 1, width: '700px' }}
                     />
             </form>
             <div>

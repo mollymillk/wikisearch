@@ -1,21 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap');
-
-.all_results {
+.allResults {
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
 }
 
-.result_container {
+.resultContainer {
     width: 700px;
 }
 
 h3 {
-    font-family: 'Hind Siliguri', sans-serif;
+    font-family: 'Hind Siliguri Bold', sans-serif;
 }
 
 .pageNumber {
     display: flex;
     flex-direction: row;
+}
+
+.resultSnippet {
+    font-family: 'Hind Siliguri Regular', sans-serif;
 }
