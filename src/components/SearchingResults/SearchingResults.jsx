@@ -13,9 +13,9 @@ const SearchingResults = ({currentPageNumber, searchingResults}) => {
                     const snippet = result.snippet.replace(/<[^>]*>/g, '') + '...'
                     return (
                         <div className={styles.resultContainer}>
-                            <h3>
+                            <div className={styles.resultContainerTitle}>
                                 {result.title}
-                            </h3>
+                            </div>
                             <div 
                             className={styles.resultSnippet}>
                                 {snippet}

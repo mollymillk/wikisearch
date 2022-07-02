@@ -1,10 +1,44 @@
-header {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
 .heading {
     font-size: 70px;
     font-family: 'Hind Siliguri Bold', sans-serif;
+}
+.logo {
+    display: flex;
+    justify-content: center;
+    gap: 20px; 
+    transition: gap 1s;
+}
+
+.logo p {
+    transition: margin-top 1s;
+    transition: margin-bottom 1s;
+    transition: font-size 1s;
+}
+
+.logo svg {
+    transition: height 1s;
+    transition: width 1s;
+}
+
+.logoSmall {
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+    transition: gap 0.5s;
+}
+
+.logoSmall p {
+    margin-top: 25px;
+    margin-bottom: 0;
+    font-size: 30px;
+    transition: margin-top 0.5s;
+    transition: margin-bottom 0.5s;
+    transition: font-size 0.5s;
+}
+
+.logoSmall svg {
+    height: 80px;
+    width: 80px;
+    transition: height 0.5s;
+    transition: width 0.5s;
 }

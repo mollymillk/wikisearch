@@ -30,19 +30,18 @@ const MainPage = () => {
             setSearchingResults(response.query.search);
             } catch(err) {
                 setSearchingResults(null);
-            } finally {
-                // setIsChanged(false);
-            }
+            } 
     }
 
     useEffect(() => {
         getSearchingResults();
-        console.log(searchRequest);
     }, [searchRequest]);
 
     return (
         <div>
-            <Header/>
+            <Header
+            searchRequest={searchRequest}
+            />
             <form>
                     <TextField 
                     className={styles.searchingInput}
