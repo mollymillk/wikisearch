@@ -1,4 +1,5 @@
 .allResults {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -20,4 +21,17 @@ h3 {
 
 .resultSnippet {
     font-family: 'Hind Siliguri Regular', sans-serif;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+hr {
+    align-self: center;
+    width: 700px;
+    background-color: #628096;
+    height: 1.5px;
+    border: none;
+    margin-bottom: 0;
 }

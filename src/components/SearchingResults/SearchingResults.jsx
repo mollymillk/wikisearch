@@ -1,35 +1,32 @@
 import React from "react";
 import { Link } from "@mui/material";
-import { getCurrentPage } from "./getCurrentPage";
-import styles from'./SearchingResults.module.css'
+import { getCurrentPageResults } from "./getCurrentPageResults";
+import styles from'./SearchingResults.module.css';
 
-const SearchingResults = (props) => {
-        const currentPageResults = getCurrentPage(props.pageNumber, props.items) 
+const SearchingResults = ({currentPageNumber, searchingResults}) => {
+        const currentPageResults = getCurrentPageResults(currentPageNumber, searchingResults) 
     return (
         <div className={styles.allResults}>
             {currentPageResults &&
-                currentPageResults.map(item => {
-                    const url = `https://en.wikipedia.org/?curid=${item.pageid}`
+                currentPageResults.map(result => {
+                    const url = `https://en.wikipedia.org/?curid=${result.pageid}`;
+                    const snippet = result.snippet.replace(/<[^>]*>/g, '') + '...'
                     return (
                         <div className={styles.resultContainer}>
                             <h3>
-                                {item.title + ''}
+                                {result.title}
                             </h3>
+                            <div 
+                            className={styles.resultSnippet}>
+                                {snippet}
+                            </div>
                             <Link 
                             href={url}
                             underline="hover"
                             >
                             Read more
                             </Link>
-                            <p className={styles.resultSnippet} dangerouslySetInnerHTML={{__html:
-                            item.snippet}}></p>
-                            <hr 
-                            align="center" 
-                            width='700' 
-                            color='#628096'
-                            size='1'
-                            >
-                            </hr>
+                            <hr/>
                         </div>
                 )})}
         </div>

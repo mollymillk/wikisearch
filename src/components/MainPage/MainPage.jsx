@@ -6,13 +6,11 @@ import styles from './MainPage.module.css'
 import { PageNavigation } from "../PageNavigation/PageNavigation";
 
 const MainPage = () => {
-    const [items, setItems] = useState([]);
-    const [value, setValue] = useState('');
-    let [isChanged, setIsChanged] = useState(null);
+    const [searchingResults, setSearchingResults] = useState([]);
+    const [searchRequest, setSearchRequest] = useState('');
 
     const handleChange = event => {
-        setValue(event.target.value);
-        setIsChanged(true);
+        setSearchRequest(event.target.value);
     }
 
     const handleKeyPress = (event) => {
@@ -21,24 +19,26 @@ const MainPage = () => {
         }
     }
 
-    useEffect(() => {
-        const getApi = async () => {
-            try {
-                let response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=40&srsearch=${value}`);
-                if (!response.ok ) {
-                    throw new Error (`This is an HTTP error: The status is ${response.status}`);
-                    
-                } 
-                response = await response.json();
-                setItems(response.query.search);
-                } catch(err) {
-                    setItems(null);
-                } finally {
-                    setIsChanged(false);
-                }
+    const getSearchingResults = async () => {
+        try {
+            let response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=40&srsearch=${searchRequest}`);
+            if (!response.ok ) {
+                throw new Error (`This is an HTTP error: The status is ${response.status}`);
+                
+            } 
+            response = await response.json();
+            setSearchingResults(response.query.search);
+            } catch(err) {
+                setSearchingResults(null);
+            } finally {
+                // setIsChanged(false);
             }
-        getApi();
-    }, [value]);
+    }
+
+    useEffect(() => {
+        getSearchingResults();
+        console.log(searchRequest);
+    }, [searchRequest]);
 
     return (
         <div>
@@ -56,9 +56,8 @@ const MainPage = () => {
             </form>
             <div>
                 <PageNavigation 
-                allItems={items} 
-                value={value}
-                isChanged={isChanged}
+                searchingResults={searchingResults} 
+                searchRequest={searchRequest}
                 />
             </div>
         </div>

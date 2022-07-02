@@ -4,47 +4,47 @@ import { useState, useEffect } from "react";
 import SearchingResults from "../SearchingResults/SearchingResults";
 import styles from './PageNavigation.module.css'
 
-export const PageNavigation = (props) => {
-    const [pageNumber, setPageNumber] = useState(1);
+export const PageNavigation = ({searchingResults, searchRequest}) => {
+    const [currentPageNumber, setCurrentPageNumber] = useState(1);
     
     useEffect(() => {
-        setPageNumber(1)
-    }, [props.isChanged]);
+        setCurrentPageNumber(1)
+    }, [searchRequest]);
 
-    const toChangeItems = event => {
-        setPageNumber(event.target.value);
+    const changePage = event => {
+        setCurrentPageNumber(event.target.value);
     } 
 
-    if (props.allItems !== null && props.value !== null && props.value !== '') {
+    if (searchingResults !== null && searchRequest !== null && searchRequest !== '') {
 
-        let pages = [];
-        const numberOfPages = props.allItems.length / 5;
+        const pages = [];
+        const pageNumbers = searchingResults.length / 5;
 
-        for (let number = 1; number <= numberOfPages; number++) {
-            pages.push(number);
+        for (let pageNumber = 1; pageNumber <= pageNumbers; pageNumber++) {
+            pages.push(pageNumber);
         }
         
         return (   
             <div className={styles.resultPage}>   
                 <SearchingResults 
-                value={props.value} 
-                items={props.allItems}
-                pageNumber={pageNumber}/>
+                searchingResults={searchingResults}
+                currentPageNumber={currentPageNumber}/>
                 <div className={styles.pageNumbers}>
                 {pages && 
-                    pages.map((number) => {
+                    pages.map((pageNumber) => {
                     return (
                     <div className={styles.pageNumber}>
                         <Button
-                        onClick={event => {toChangeItems(event)}}
-                        value={number}
+                        onClick={event => {changePage(event)}}
+                        value={pageNumber}
                         >
-                        {number}
+                        {pageNumber}
                         </Button>
                     </div>
                     )})}
                 </div>
             </div> 
-            )
+        )
     }     
 }
+
