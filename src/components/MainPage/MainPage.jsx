@@ -14,7 +14,7 @@ const MainPage = () => {
         setSearchRequest(event.target.value);
     }
 
-    const handleKeyPress = (event) => {
+    const handleKeyPress = event => {
         if(event.key === 'Enter') {
             event.preventDefault();
         }
@@ -38,7 +38,6 @@ const MainPage = () => {
         if (/[а-я]/i.test(searchRequest)) {
             setSearchRequestLanguage('ru')
         } else setSearchRequestLanguage('en')
-        console.log(searchRequestLanguage);
         getSearchingResults();
     }, [searchRequest]);
 

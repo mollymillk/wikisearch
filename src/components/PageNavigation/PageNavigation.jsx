@@ -11,10 +11,6 @@ export const PageNavigation = ({searchingResults, searchRequest}) => {
         setCurrentPageNumber(1)
     }, [searchRequest]);
 
-    const changePage = event => {
-        setCurrentPageNumber(event.target.value);
-    } 
-
     if (searchingResults !== null && searchRequest !== null && searchRequest !== '') {
 
         const pages = [];
@@ -35,7 +31,7 @@ export const PageNavigation = ({searchingResults, searchRequest}) => {
                     return (
                     <div className={styles.pageNumber}>
                         <Button
-                        onClick={event => {changePage(event)}}
+                        onClick={event => {setCurrentPageNumber(event.target.value)}}
                         value={pageNumber}
                         >
                         {pageNumber}
